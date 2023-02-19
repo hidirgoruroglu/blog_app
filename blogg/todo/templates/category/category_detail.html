@@ -1,0 +1,11 @@
+{% extends "core/base.html" %}
+
+{% block container %}
+{% for todo in todos %}
+        <ul class="list-unstyled">
+            <li>{{ todo.title }}</li>
+        </ul>
+{% endfor %}
+
+
+{% endblock %}

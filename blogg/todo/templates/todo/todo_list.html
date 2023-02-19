@@ -1,0 +1,35 @@
+{% extends "core/base.html" %}
+
+{% block container %}
+<div class="col-sm-6 offset-sm-3">
+    
+    <h1>TODO APP</h1>
+    {% if tag %}
+        Tag : {{ tag }}
+    {% endif %}
+    
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Başlık</th>
+            <th scope="col">Durum</th>
+            <th scope="col">Tamamla</th>
+            <th scope="col">Sil</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for todo in todos %}
+                <tr>
+                    <th> {{ todo.id }} </th>
+                    <td><a style="text-decoration: none;" href="{% url 'todo_detail' category_slug=todo.category.slug id=todo.id %}"> {{ todo.title }} </a></td>
+                    <td> {{ todo.is_active }} </td>
+                    <td><a href="todo/{{ todo.id }}/complate" class="btn btn-primary">Tamamla</a></td>
+                    <td><a href="/todo/{{ todo.id }}/delete" class="btn btn-danger">Sil</a></td>
+                </tr>
+        {% endfor %}
+
+        </tbody>
+      </table>
+</div>
+{% endblock %}

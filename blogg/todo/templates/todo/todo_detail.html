@@ -1,0 +1,27 @@
+{% extends "core/base.html" %}
+
+{% block container %}
+<div class="col-sm-6 offset-sm-3">
+    <a href="/" class="btn btn-primary">Ana sayfa</a>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ todo.title }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ todo.category }}</h6>
+          <p class="card-text">{{ todo.content }}</p>
+          <ul class="list-unstyled">
+            <li>Eklenme: {{ todo.created_at }}</li>
+          
+          {% if todo.updated_at != todo.created_at %}
+                <li>Güncellenme: {{ todo.updated_at }} </li>
+          {% endif %}
+         </ul>
+           <p>Id : {{ todo.id }} </p>
+          <ul class="list-inline">
+            {% for item in todo.tag.all %}
+                  <li class="list-inline-item"><a href="{% url 'tag_view' tag_slug=item %}"><span class="badge rounded-pill text-bg-primary">{{item}}</span></a></li>
+            {% endfor %}
+          </ul>
+        </div>
+    </div>    
+</div>
+{% endblock %}
